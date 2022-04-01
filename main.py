@@ -101,6 +101,10 @@ class Process:
         playlist_name_element = self.__find_element(playlist_name)
         playlist_name_element.send_keys(self.file_name)
 
+        save_playlist = "//button[@class='FlatButton FlatButton--primary FlatButton--size-m']"
+        save_playlist_element = self.__find_element(save_playlist)
+        save_playlist_element.click()
+
     def add_songs(self):
 
         for song in self.song_list:
@@ -134,7 +138,7 @@ class Process:
             save_playlist_element.click()
 
         print(f'\n\n____Added {len(self.song_list)} songs!!____')
-        self.browser.close()
+        self.browser.quit()
 
     def __find_element(self, xpath: str, timeout: int = 5) -> WebElement or None:
         try:
@@ -149,4 +153,3 @@ class Process:
 if __name__ == '__main__':
     process = Process(FILE_NAME)
     process.main()
-    quit(0)
